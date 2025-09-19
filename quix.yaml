@@ -35,7 +35,7 @@ deployments:
       - name: DATA_TOPIC
         inputType: InputTopic
         description: Name of the ingress data topic.
-        value: edf-data
+        value: normalised-data
       - name: CONFIG_TOPIC
         inputType: InputTopic
         description: Name of the ingress config topic.

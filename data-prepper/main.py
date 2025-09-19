@@ -45,19 +45,16 @@ def main():
     config_topic = app.topic(name=os.environ["CONFIG_TOPIC"])
     output_topic = app.topic(name=os.environ["OUTPUT_TOPIC"], key_serializer="str")
 
-    sdf = app.dataframe(topic=data_topic).apply(lambda row: [r for r in row["data"]], expand=True)
-    sdf = sdf.join_lookup(
+    app.dataframe(topic=data_topic).join_lookup(
         lookup=QuixConfigurationService(
             topic=config_topic,
             app_config=app.config,
         ),
         fields=get_fields()
-    )
-    sdf.to_topic(output_topic)
+    ).to_topic(output_topic)
 
     app.run()
 
 
-# It is recommended to execute Applications under a conditional main
 if __name__ == "__main__":
     main()

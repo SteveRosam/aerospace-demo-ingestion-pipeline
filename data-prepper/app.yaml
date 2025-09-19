@@ -1,14 +1,23 @@
 name: Data Prepper
 language: python
 variables:
-  - name: input
+  - name: DATA_TOPIC
     inputType: InputTopic
-    description: Name of the input topic to listen to.
+    description: Name of the ingress data topic.
     defaultValue: csv-data
-  - name: output
+  - name: CONFIG_TOPIC
+    inputType: InputTopic
+    description: Name of the ingress config topic.
+    defaultValue: csv-data
+  - name: OUTPUT_TOPIC
     inputType: OutputTopic
-    description: Name of the output topic to write to.
+    description: Name of the output topic to write enriched data to.
     defaultValue: transform
+  - name: CONSUMER_GROUP
+    inputType: FreeText
+    description: Consumer group name.
+    defaultValue: data-prepper
+    required: true
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: main.py

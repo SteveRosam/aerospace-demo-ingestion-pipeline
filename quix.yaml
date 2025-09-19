@@ -28,3 +28,6 @@ deployments:
 topics:
   - name: http-source
   - name: edf-data
+  - name: config-updates
+    linkedTopic:
+      workspaceId: quixers-testmanagerdemo-dev

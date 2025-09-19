@@ -1,46 +1,61 @@
-# import the Quix Streams modules for interacting with Kafka.
-# For general info, see https://quix.io/docs/quix-streams/introduction.html
-from quixstreams import Application
-
 import os
 
-# for local dev, load env vars from a .env file
-# from dotenv import load_dotenv
-# load_dotenv()
+from quixstreams import Application
+from quixstreams.dataframe.windows
+from quixstreams.dataframe.joins.lookups.quix_configuration_service import QuixConfigurationService
+from quixstreams.dataframe.joins.lookups.quix_configuration_service.lookup import JSONField
+
+
+def get_fields():
+    return {
+        "throttle": {
+            "type": "sensors",
+            "jsonpath": "throttle.value"
+        },
+        "hold_time": {
+            "type": "sensors",
+            "jsonpath": "hold_time.value"
+        },
+        "battery-id": {
+            "type": "sensors",
+            "jsonpath": "battery.id"
+        },
+        "motor-id": {
+            "type": "sensors",
+            "jsonpath": "motor.id"
+        },
+        "shroud-id": {
+            "type": "sensors",
+            "jsonpath": "shroud.id"
+        },
+        "fan-id": {
+            "type": "sensors",
+            "jsonpath": "fan.id"
+        }
+    }
+
 
 
 def main():
-    """
-    Transformations generally read from, and produce to, Kafka topics.
-
-    They are conducted with Applications and their accompanying StreamingDataFrames
-    which define what transformations to perform on incoming data.
-
-    Be sure to explicitly produce output to any desired topic(s); it does not happen
-    automatically!
-
-    To learn about what operations are possible, the best place to start is:
-    https://quix.io/docs/quix-streams/processing.html
-    """
-
-    # Setup necessary objects
     app = Application(
-        consumer_group="my_transformation",
+        consumer_group="data_prepper",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )
-    input_topic = app.topic(name=os.environ["input"])
-    output_topic = app.topic(name=os.environ["output"])
-    sdf = app.dataframe(topic=input_topic)
+    data_topic = app.topic(name=os.environ["DATA_TOPIC"], key_deserializer="str")
+    config_topic = app.topic(name=os.environ["CONFIG_TOPIC"])
+    output_topic = app.topic(name=os.environ["output"], key_serializer="str")
 
-    # Do StreamingDataFrame operations/transformations here
-    sdf = sdf.apply(lambda row: row).filter(lambda row: True)
-    sdf = sdf.print(metadata=True)
-
-    # Finish off by writing to the final result to the output topic
+    sdf = app.dataframe(topic=input_topic).apply(lambda row: [r for r in row], expand=True)
+    sdf = sdf.join_lookup(
+        lookup=QuixConfigurationService(
+            topic=config_topic,
+            app_config=app.config,
+        ),
+        fields=get_fields()
+    )
     sdf.to_topic(output_topic)
 
-    # With our pipeline defined, now run the Application
     app.run()
 
 

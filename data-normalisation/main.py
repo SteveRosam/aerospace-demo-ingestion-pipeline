@@ -34,7 +34,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data-norm-v2-dev",
+        consumer_group="data-norm-v3-dev",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )
@@ -53,10 +53,9 @@ def main():
     # Unpack data further
     sdf = sdf.apply(lambda row: unpack_data(row))
 
-    sdf = sdf.print(metadata=True)
-
     # Finish off by writing to the final result to the output topic
-    #sdf.to_topic(output_topic)
+    sdf = sdf.print(metadata=True)
+    sdf.to_topic(output_topic)
 
     # With our pipeline defined, now run the Application
     app.run()

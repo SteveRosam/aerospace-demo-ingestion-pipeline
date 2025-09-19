@@ -45,7 +45,7 @@ def main():
     config_topic = app.topic(name=os.environ["CONFIG_TOPIC"])
     output_topic = app.topic(name=os.environ["OUTPUT_TOPIC"], key_serializer="str")
 
-    sdf = app.dataframe(topic=input_topic).apply(lambda row: [r for r in row], expand=True)
+    sdf = app.dataframe(topic=data_topic).apply(lambda row: [r for r in row], expand=True)
     sdf = sdf.join_lookup(
         lookup=QuixConfigurationService(
             topic=config_topic,

@@ -1,37 +1,36 @@
 import os
 
 from quixstreams import Application
-from quixstreams.dataframe.windows
 from quixstreams.dataframe.joins.lookups.quix_configuration_service import QuixConfigurationService
 from quixstreams.dataframe.joins.lookups.quix_configuration_service.lookup import JSONField
 
 
 def get_fields():
     return {
-        "throttle": {
+        "throttle": JSONField(**{
             "type": "sensors",
             "jsonpath": "throttle.value"
-        },
-        "hold_time": {
+        }),
+        "hold_time": JSONField(**{
             "type": "sensors",
             "jsonpath": "hold_time.value"
-        },
-        "battery-id": {
+        }),
+        "battery-id": JSONField(**{
             "type": "sensors",
             "jsonpath": "battery.id"
-        },
-        "motor-id": {
+        }),
+        "motor-id": JSONField(**{
             "type": "sensors",
             "jsonpath": "motor.id"
-        },
-        "shroud-id": {
+        }),
+        "shroud-id": JSONField(**{
             "type": "sensors",
             "jsonpath": "shroud.id"
-        },
-        "fan-id": {
+        }),
+        "fan-id": JSONField(**{
             "type": "sensors",
             "jsonpath": "fan.id"
-        }
+        })
     }
 
 

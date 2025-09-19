@@ -22,7 +22,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data-norm-v1-dev4",
+        consumer_group="data-norm-v1-dev5",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )

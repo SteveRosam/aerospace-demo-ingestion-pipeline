@@ -78,20 +78,20 @@ deployments:
         inputType: InputTopic
         description: Name of the Kafka input topic to consume from
         required: true
-        value: prepped_data
+        value: prepped-data
       - name: S3_BUCKET
         inputType: FreeText
         description: S3 bucket name for storing Parquet files
         required: true
-        value: quix-bucket
+        value: quixdatalaketest
       - name: S3_PREFIX
         inputType: FreeText
         description: S3 prefix/path for data files
-        value: quixlake
+        value: ts_test
       - name: TABLE_NAME
         inputType: FreeText
         description: Table name for data organization and registration
-        value: cpu-metrics
+        value: test_runs
       - name: HIVE_COLUMNS
         inputType: FreeText
         description: Comma-separated list of columns for Hive partitioning. Include year/month/day/hour to extract from TIMESTAMP_COLUMN (e.g., location,year,month,day,sensor_type)
@@ -143,7 +143,7 @@ deployments:
       - name: AWS_REGION
         inputType: FreeText
         description: AWS region for S3 bucket
-        value: us-west-2
+        value: eu-west-2
   - name: Quix DataLake Sink
     application: DataLake.Sink
     version: latest

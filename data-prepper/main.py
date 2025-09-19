@@ -38,7 +38,7 @@ def get_fields():
 
 def main():
     app = Application(
-        consumer_group="data_prepper",
+        consumer_group=os.environ["CONSUMER_GROUP"],
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )

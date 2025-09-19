@@ -144,7 +144,17 @@ deployments:
         inputType: FreeText
         description: AWS region for S3 bucket
         value: us-west-2
-
+  - name: Quix DataLake Sink
+    application: DataLake.Sink
+    version: latest
+    deploymentType: Managed
+    resources:
+      cpu: 500
+      memory: 1500
+      replicas: 1
+    configuration:
+      topic: edf-data
+      autoOffsetReset: earliest
 
 # This section describes the Topics of the data pipeline
 topics:

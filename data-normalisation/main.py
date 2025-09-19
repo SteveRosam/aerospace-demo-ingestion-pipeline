@@ -35,7 +35,7 @@ def main():
     
 
     # Add timestamp
-    sdf = sdf.apply(lambda row: add_timestamp(row), statefull=True)
+    sdf = sdf.apply(lambda row: add_timestamp(row), stateful=True)
     sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
 
     sdf = sdf.print(metadata=True)

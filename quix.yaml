@@ -23,6 +23,32 @@ deployments:
         description: This is the output topic for hello world data
         required: true
         value: edf-data
+  - name: Data Prepper
+    application: data-prepper
+    version: latest
+    deploymentType: Service
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    variables:
+      - name: DATA_TOPIC
+        inputType: InputTopic
+        description: Name of the ingress data topic.
+        value: edf-data
+      - name: CONFIG_TOPIC
+        inputType: InputTopic
+        description: Name of the ingress config topic.
+        value: config-updates
+      - name: OUTPUT_TOPIC
+        inputType: OutputTopic
+        description: Name of the output topic to write enriched data to.
+        value: prepped-data
+      - name: CONSUMER_GROUP
+        inputType: FreeText
+        description: Consumer group name.
+        required: true
+        value: data-prepper
 
 # This section describes the Topics of the data pipeline
 topics:
@@ -31,3 +57,4 @@ topics:
   - name: config-updates
     linkedTopic:
       workspaceId: quixers-testmanagerdemo-dev
+  - name: prepped-data

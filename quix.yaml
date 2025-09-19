@@ -168,6 +168,7 @@ deployments:
       sourceTopic: quixers-aerospacedemoingestionpipeline-prod-edf-data
       sourceKeys: [GOOD__RIG_MANUAL_RUN_BATT-2S_PWR_50-PCT, GOOD__RIG_MANUAL_RUN_BATT-3S_PWR_50-PCT]
       destinationTopic: quixers-aerospacedemoingestionpipeline-prod-edf-data-replay
+      replaySpeed: 0
       maxGapSizeInMilliseconds: 1000
 
 # This section describes the Topics of the data pipeline

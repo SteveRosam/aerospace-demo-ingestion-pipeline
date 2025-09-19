@@ -5,9 +5,8 @@ from quixstreams import Application
 import os
 
 # for local dev, load env vars from a .env file
-# from dotenv import load_dotenv
-# load_dotenv()
-
+from dotenv import load_dotenv
+load_dotenv()
 
 def main():
 
@@ -22,7 +21,8 @@ def main():
     sdf = app.dataframe(topic=input_topic)
 
     # Do StreamingDataFrame operations/transformations here
-    sdf = sdf.apply(lambda row: row).filter(lambda row: True)
+    sdf = sdf.print(metadata=True)
+    sdf = sdf["data"].apply(lambda row: row, expand=True)
     sdf = sdf.print(metadata=True)
 
     # Finish off by writing to the final result to the output topic

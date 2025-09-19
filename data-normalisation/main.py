@@ -34,7 +34,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data-norm-v1-dev5",
+        consumer_group="data-norm-v2-dev",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )

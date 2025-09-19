@@ -12,7 +12,7 @@ def main():
 
     # Setup necessary objects
     app = Application(
-        consumer_group="data-norm-v1-dev1",
+        consumer_group="data-norm-v1-dev2",
         auto_create_topics=True,
         auto_offset_reset="earliest"
     )

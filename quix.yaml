@@ -155,6 +155,20 @@ deployments:
     configuration:
       topic: edf-data
       autoOffsetReset: earliest
+  - name: Replay Rig data
+    application: DataLake.Replay
+    version: latest
+    deploymentType: Managed
+    resources:
+      cpu: 200
+      memory: 500
+      replicas: 1
+    configuration:
+      sourceWorkspaceId: quixers-aerospacedemoingestionpipel-3c4a7ff1
+      sourceTopic: quixers-aerospacedemoingestionpipeline-prod-edf-data
+      sourceKeys: [GOOD__RIG_MANUAL_RUN_BATT-2S_PWR_50-PCT, GOOD__RIG_MANUAL_RUN_BATT-3S_PWR_50-PCT]
+      destinationTopic: quixers-aerospacedemoingestionpipeline-prod-edf-data-replay
+      maxGapSizeInMilliseconds: 1000
 
 # This section describes the Topics of the data pipeline
 topics:
@@ -166,3 +180,4 @@ topics:
   - name: prepped-data
   - name: transform
   - name: normalised-data
+  - name: quixers-aerospacedemoingestionpipeline-prod-edf-data-replay

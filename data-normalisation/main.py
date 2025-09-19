@@ -17,6 +17,18 @@ def add_timestamp(row: dict, key, timestamp, headers, state: State):
     row["new_timestamp"] = time_0 + row["timestamp"]
     return row
 
+# unpack data
+def unpack_data(row: dict):
+    new_row = {}
+    for k in row:
+        if type(row[k]) == dict:
+            for j in row[k]:
+                new_row[k+"__"+j] = row[k][j]
+        else:
+            new_row[k] = row[k]
+
+    return new_row
+
 
 def main():
 
@@ -34,10 +46,12 @@ def main():
     sdf = sdf.print(metadata=True)
     sdf = sdf.apply(lambda row: row["data"], expand=True)
     
-
     # Add timestamp
     sdf = sdf.apply(add_timestamp, metadata=True, stateful=True)
     sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
+
+    # Unpack data further
+    sdf = sdf.apply(lambda row: unpack_data(row))
 
     sdf = sdf.print(metadata=True)
 

@@ -1,12 +1,21 @@
 # import the Quix Streams modules for interacting with Kafka.
 # For general info, see https://quix.io/docs/quix-streams/introduction.html
 from quixstreams import Application, State
-
+import time
 import os
 
 # for local dev, load env vars from a .env file
 from dotenv import load_dotenv
 load_dotenv()
+
+# add timestamp
+def add_timestamp(row: dict, state: State):
+    time_0 = state.get("time_0", default=None)
+    if not time_0:
+        state.set("time_0", int(time.time()*1000))
+        time_0 = state.get("time_0", default=None)
+    row["new_timestamp"] = time_0 + row["timestamp"]
+
 
 def main():
 
@@ -22,7 +31,13 @@ def main():
 
     # Do StreamingDataFrame operations/transformations here
     sdf = sdf.print(metadata=True)
-    sdf = sdf.apply(lambda row: row["data"], expand=True) 
+    sdf = sdf.apply(lambda row: row["data"], expand=True)
+    
+
+    # Add timestamp
+    sdf = sdf.apply(lambda row: add_timestamp(row), statefull=True)
+    sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
+
     sdf = sdf.print(metadata=True)
 
     # Finish off by writing to the final result to the output topic

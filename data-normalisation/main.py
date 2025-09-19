@@ -23,6 +23,7 @@ def main():
     # Do StreamingDataFrame operations/transformations here
     sdf = sdf.print(metadata=True)
     print("hey")
+    sdf = sdf.apply(lambda row: row["data"]) 
     sdf = sdf.apply(lambda row: row, expand=True)
     sdf = sdf.print(metadata=True)
     print("oh")

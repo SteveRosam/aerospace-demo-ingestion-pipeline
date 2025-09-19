@@ -44,7 +44,7 @@ def main():
     )
     data_topic = app.topic(name=os.environ["DATA_TOPIC"], key_deserializer="str")
     config_topic = app.topic(name=os.environ["CONFIG_TOPIC"])
-    output_topic = app.topic(name=os.environ["output"], key_serializer="str")
+    output_topic = app.topic(name=os.environ["OUTPUT_TOPIC"], key_serializer="str")
 
     sdf = app.dataframe(topic=input_topic).apply(lambda row: [r for r in row], expand=True)
     sdf = sdf.join_lookup(

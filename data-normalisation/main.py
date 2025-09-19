@@ -22,10 +22,8 @@ def main():
 
     # Do StreamingDataFrame operations/transformations here
     sdf = sdf.print(metadata=True)
-    print("hey")
     sdf = sdf.apply(lambda row: row["data"], expand=True) 
     sdf = sdf.print(metadata=True)
-    print("oh")
 
     # Finish off by writing to the final result to the output topic
     #sdf.to_topic(output_topic)

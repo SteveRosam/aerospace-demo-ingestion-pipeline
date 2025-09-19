@@ -9,12 +9,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # add timestamp
-def add_timestamp(row: dict, state: State):
+def add_timestamp(row: dict, key, timestamp, headers, state: State):
     time_0 = state.get("time_0", default=None)
     if not time_0:
-        state.set("time_0", int(time.time()*1000))
+        state.set("time_0", timestamp)
         time_0 = state.get("time_0", default=None)
     row["new_timestamp"] = time_0 + row["timestamp"]
+    return row
 
 
 def main():
@@ -35,7 +36,7 @@ def main():
     
 
     # Add timestamp
-    sdf = sdf.apply(lambda row: add_timestamp(row), stateful=True)
+    sdf = sdf.apply(add_timestamp, metadata=True, stateful=True)
     sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
 
     sdf = sdf.print(metadata=True)

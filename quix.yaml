@@ -144,6 +144,10 @@ deployments:
         inputType: FreeText
         description: AWS region for S3 bucket
         value: eu-west-2
+      - name: LOGLEVEL
+        inputType: FreeText
+        description: loglevel
+        value: INFO
   - name: Quix DataLake Sink
     application: DataLake.Sink
     version: latest

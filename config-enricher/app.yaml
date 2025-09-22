@@ -18,6 +18,10 @@ variables:
     description: Consumer group name.
     defaultValue: data-prepper
     required: true
+  - name: CONFIG_SDK_TOKEN
+    inputType: Secret
+    description: SDK token from the config manager's project
+    required: true
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: main.py

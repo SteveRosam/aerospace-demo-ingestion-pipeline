@@ -49,6 +49,11 @@ deployments:
         description: Consumer group name.
         required: true
         value: config-enricher
+      - name: CONFIG_SDK_TOKEN
+        inputType: Secret
+        description: SDK token from the config manager's project
+        secretKey: config_sdk_token
+        required: true
   - name: Data normalisation
     application: data-normalisation
     version: latest
@@ -78,7 +83,7 @@ deployments:
         inputType: InputTopic
         description: Name of the Kafka input topic to consume from
         required: true
-        value: prepped-data
+        value: config-enriched-data
       - name: S3_BUCKET
         inputType: FreeText
         description: S3 bucket name for storing Parquet files
@@ -107,7 +112,7 @@ deployments:
       - name: CATALOG_AUTH_TOKEN
         inputType: Secret
         description: auth token for catalog
-        secretKey: sdk_token
+        secretKey: quixlake_sdk_token
       - name: AUTO_DISCOVER
         inputType: FreeText
         description: Automatically register table in REST Catalog on first write

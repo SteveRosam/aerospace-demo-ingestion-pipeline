@@ -147,7 +147,7 @@ deployments:
       - name: LOGLEVEL
         inputType: FreeText
         description: loglevel
-        value: INFO
+        value: DEBUG
   - name: Quix DataLake Sink
     application: DataLake.Sink
     version: latest

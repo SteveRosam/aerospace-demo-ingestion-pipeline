@@ -48,11 +48,10 @@ def main():
     
     # Add timestamp
     sdf = sdf.apply(add_timestamp, metadata=True, stateful=True)
+    sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
 
     # Unpack data further
     sdf = sdf.apply(lambda row: unpack_data(row))
-
-    sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
 
     # Finish off by writing to the final result to the output topic
     sdf = sdf.print(metadata=True)

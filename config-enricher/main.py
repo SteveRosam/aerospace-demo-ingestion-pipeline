@@ -49,6 +49,7 @@ def main():
         lookup=QuixConfigurationService(
             topic=config_topic,
             app_config=app.config,
+            quix_sdk_token=os.environ["CONFIG_SDK_TOKEN"],
         ),
         fields=get_fields()
     ).to_topic(output_topic)

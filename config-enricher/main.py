@@ -4,33 +4,21 @@ from quixstreams import Application
 from quixstreams.dataframe.joins.lookups.quix_configuration_service import QuixConfigurationService
 from quixstreams.dataframe.joins.lookups.quix_configuration_service.lookup import JSONField
 
+def as_json_field(jsonpath):
+    return JSONField(type="TestConfig", jsonpath=jsonpath)
 
 def get_fields():
     return {
-        "throttle": JSONField(**{
-            "type": "TestConfig",
-            "jsonpath": "throttle.value"
-        }),
-        "hold_time": JSONField(**{
-            "type": "TestConfig",
-            "jsonpath": "hold_time.value"
-        }),
-        "battery-id": JSONField(**{
-            "type": "TestConfig",
-            "jsonpath": "battery.id"
-        }),
-        "motor-id": JSONField(**{
-            "type": "TestConfig",
-            "jsonpath": "motor.id"
-        }),
-        "shroud-id": JSONField(**{
-            "type": "TestConfig",
-            "jsonpath": "shroud.id"
-        }),
-        "fan-id": JSONField(**{
-            "type": "TestConfig",
-            "jsonpath": "fan.id"
-        })
+        "test_id": as_json_field("test_id"),
+        "campaign_id": as_json_field("campaign_id"),
+        "sample_id": as_json_field("sample_id"),
+        "operator": as_json_field("operator"),
+        "throttle": as_json_field("sensors.throttle.value"),
+        "hold_time": as_json_field("sensors.hold_time.value"),
+        "battery_id": as_json_field("sensors.battery.id"),
+        "motor_id": as_json_field("sensors.motor.id"),
+        "shroud_id": as_json_field("sensors.shroud.id"),
+        "fan_id": as_json_field("sensors.fan.id")
     }
 
 

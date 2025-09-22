@@ -8,27 +8,27 @@ from quixstreams.dataframe.joins.lookups.quix_configuration_service.lookup impor
 def get_fields():
     return {
         "throttle": JSONField(**{
-            "type": "sensors",
+            "type": "TestConfig",
             "jsonpath": "throttle.value"
         }),
         "hold_time": JSONField(**{
-            "type": "sensors",
+            "type": "TestConfig",
             "jsonpath": "hold_time.value"
         }),
         "battery-id": JSONField(**{
-            "type": "sensors",
+            "type": "TestConfig",
             "jsonpath": "battery.id"
         }),
         "motor-id": JSONField(**{
-            "type": "sensors",
+            "type": "TestConfig",
             "jsonpath": "motor.id"
         }),
         "shroud-id": JSONField(**{
-            "type": "sensors",
+            "type": "TestConfig",
             "jsonpath": "shroud.id"
         }),
         "fan-id": JSONField(**{
-            "type": "sensors",
+            "type": "TestConfig",
             "jsonpath": "fan.id"
         })
     }

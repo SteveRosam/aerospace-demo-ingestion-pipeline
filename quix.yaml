@@ -23,8 +23,8 @@ deployments:
         description: This is the output topic for hello world data
         required: true
         value: edf-data
-  - name: Data Prepper
-    application: data-prepper
+  - name: Config Enricher
+    application: config-enricher
     version: latest
     deploymentType: Service
     resources:
@@ -43,12 +43,12 @@ deployments:
       - name: OUTPUT_TOPIC
         inputType: OutputTopic
         description: Name of the output topic to write enriched data to.
-        value: prepped-data
+        value: config-enriched-data
       - name: CONSUMER_GROUP
         inputType: FreeText
         description: Consumer group name.
         required: true
-        value: data-prepper
+        value: config-enricher
   - name: Data normalisation
     application: data-normalisation
     version: latest
@@ -151,12 +151,9 @@ deployments:
 
 # This section describes the Topics of the data pipeline
 topics:
-  - name: http-source
   - name: edf-data
   - name: config-updates
     linkedTopic:
       workspaceId: quixers-testmanagerdemo-dev
-  - name: prepped-data
-  - name: transform
   - name: normalised-data
-  - name: quixers-aerospacedemoingestionpipeline-prod-edf-data-replay
+  - name: config-enriched-data

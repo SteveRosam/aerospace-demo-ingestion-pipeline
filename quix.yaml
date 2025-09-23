@@ -108,7 +108,7 @@ deployments:
       - name: CATALOG_URL
         inputType: FreeText
         description: REST Catalog URL for optional table registration (leave empty to skip)
-        value: http://iceberg-catalog
+        value: https://iceberg-catalog-quixers-quixlake-prod.az-france-0.app.quix.io
       - name: CATALOG_AUTH_TOKEN
         inputType: Secret
         description: auth token for catalog

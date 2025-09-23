@@ -10,6 +10,7 @@ def as_json_field(jsonpath):
 def get_fields():
     return {
         "test_id": as_json_field("test_id"),
+        "environment_id": as_json_field("environment_id"),
         "campaign_id": as_json_field("campaign_id"),
         "sample_id": as_json_field("sample_id"),
         "operator": as_json_field("operator"),

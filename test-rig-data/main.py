@@ -40,6 +40,12 @@ swagger = Swagger(app)
 def redirect_to_swagger():
     return redirect("/apidocs/")
 
+@app.route("/", methods=['POST'])
+def post_root():
+    data = request.json
+    logger.debug(f"{data}")
+    return Response(status=404)
+
 @app.route("/data/", methods=['POST'])
 def post_data_without_key():
     """

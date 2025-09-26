@@ -52,8 +52,8 @@ deployments:
       - name: CONFIG_SDK_TOKEN
         inputType: Secret
         description: SDK token from the config manager's project
-        secretKey: config_sdk_token
         required: true
+        secretKey: config_sdk_token
   - name: Data normalisation
     application: data-normalisation
     version: latest
@@ -153,6 +153,17 @@ deployments:
         inputType: FreeText
         description: loglevel
         value: DEBUG
+  - name: Quix DataLake Sink
+    application: DataLake.Sink
+    version: latest
+    deploymentType: Managed
+    resources:
+      cpu: 500
+      memory: 1500
+      replicas: 1
+    configuration:
+      topic: edf-data
+      autoOffsetReset: earliest
 
 # This section describes the Topics of the data pipeline
 topics:

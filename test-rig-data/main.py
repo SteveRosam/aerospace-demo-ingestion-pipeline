@@ -44,6 +44,7 @@ def redirect_to_swagger():
 def post_root():
     data = request.json
     logger.debug(f"{data}")
+    # dont use this route
     return Response(status=404)
 
 @app.route("/data/", methods=['POST'])

@@ -14,7 +14,7 @@ def add_timestamp(row: dict, key, timestamp, headers, state: State):
     if not time_0:
         state.set("time_0", timestamp)
         time_0 = state.get("time_0", default=None)
-    row["new_timestamp"] = time_0 + row["timestamp"]
+    row["timestamp"] = time_0 + row["timestamp"]
     return row
 
 # unpack data
@@ -52,7 +52,7 @@ def main():
     # Unpack data further
     sdf = sdf.apply(lambda row: unpack_data(row))
 
-    sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['new_timestamp'])
+    sdf = sdf.set_timestamp(lambda value, key, timestamp, headers: value['timestamp'])
 
     # Finish off by writing to the final result to the output topic
     sdf = sdf.print(metadata=True)

@@ -164,19 +164,6 @@ deployments:
     configuration:
       topic: edf-data
       autoOffsetReset: earliest
-  - name: France conference replay
-    application: DataLake.Replay
-    version: latest
-    deploymentType: Managed
-    resources:
-      cpu: 300
-      memory: 500
-      replicas: 1
-    configuration:
-      sourceWorkspaceId: quixers-aerospacedemoingestionpipeline-prod
-      sourceTopic: edf-data
-      sourceKeys: SHOW_0013
-      destinationTopic: edf-data
 
 # This section describes the Topics of the data pipeline
 topics:

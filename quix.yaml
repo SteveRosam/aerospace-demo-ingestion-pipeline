@@ -187,6 +187,7 @@ deployments:
       sourceTopic: edf-data
       sourceKeys: [TOMAS_002, SHOW_0013]
       destinationTopic: edf-data-replay
+      replaySpeed: 3
       maxGapSizeInMilliseconds: 1000
 
 # This section describes the Topics of the data pipeline

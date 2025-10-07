@@ -164,6 +164,16 @@ deployments:
     configuration:
       topic: edf-data
       autoOffsetReset: earliest
+  - name: Quix DataLake Sink 2
+    application: DataLake.Sink
+    version: latest
+    deploymentType: Managed
+    resources:
+      cpu: 500
+      memory: 1500
+      replicas: 1
+    configuration:
+      topic: config-enriched-data
 
 # This section describes the Topics of the data pipeline
 topics:

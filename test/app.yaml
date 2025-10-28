@@ -5,7 +5,7 @@ variables:
     inputType: InputTopic
     multiline: false
     description: Name of the input topic to listen to.
-    defaultValue: config-updates
+    defaultValue: normalised-data
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: main.py

@@ -193,9 +193,6 @@ deployments:
 # This section describes the Topics of the data pipeline
 topics:
   - name: edf-data
-  - name: config-updates
-    linkedTopic:
-      workspaceId: quixers-testmanagerdemo-dev
   - name: config-updates-2
     linkedTopic:
       topicName: config-updates

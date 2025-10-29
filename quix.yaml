@@ -194,8 +194,6 @@ deployments:
 topics:
   - name: edf-data
   - name: config-updates
-    linkedTopic:
-      workspaceId: quixers-testmanagerdemo-dev
   - name: config-updates-working
     linkedTopic:
       topicName: config-updates

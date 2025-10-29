@@ -196,7 +196,6 @@ topics:
   - name: normalised-data
   - name: config-enriched-data
   - name: edf-data-replay
-  - name: config-updates-2
+  - name: config-updates
     linkedTopic:
-      topicName: config-updates
       workspaceId: quixers-testmanagerdemo-dev

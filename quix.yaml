@@ -196,7 +196,6 @@ topics:
   - name: normalised-data
   - name: config-enriched-data
   - name: edf-data-replay
-  - name: config-updates
   - name: config-updates-2
     linkedTopic:
       topicName: config-updates

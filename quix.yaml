@@ -54,6 +54,7 @@ deployments:
         description: SDK token from the config manager's project
         required: true
         secretKey: config_sdk_token
+    disabled: true
   - name: Data normalisation
     application: data-normalisation
     version: latest
